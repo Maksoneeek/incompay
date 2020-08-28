@@ -191,6 +191,7 @@ body.lock {
 .header__burger {
   position: relative;
   z-index: 5;
+  cursor: pointer;
 }
 
 .header__burger img {
