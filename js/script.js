@@ -26,6 +26,15 @@ $(window).scroll(function(event) {
 	}
 });
 
+$(document).ready(function () {
+    $('.tabs__item').click(function (event) {
+        $(".tabs__item").removeClass("active")
+        $(this).addClass('active');
+        $(".tabs__block").removeClass("active")
+        const id = $(this).attr('to')
+        $(`#${id}`).addClass('active')
+    })
+});
 
 
 
