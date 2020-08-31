@@ -46,6 +46,15 @@ color: #ffffff;
 body.lock{
 	overflow: hidden;
 }
+
+body.scrollblock {
+	overflow: hidden;
+}
+
+body.main-qwr{
+	overflow: hidden;
+}
+
 .header {
 	display: flex;
 	align-items: center;
@@ -96,9 +105,17 @@ body.lock{
 			font-weight: 500;
 			font-size: 12px;
 			line-height: 15px;
+
+			
+
+			span{
+				display: inline-block;
+				padding: 0 0 5px 0;
+			}
 			&:hover{
 				span{
 					border-bottom: 1px solid #ffffff;
+					color: #ffffff;
 				}
 			}
 		}
@@ -121,10 +138,44 @@ body.lock{
 		align-items: center;
 		justify-content: space-between;
 		flex: 0 1 136px;
+		.header__btm{
+			display: none;
+		}
+		&_t{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex: 0 1 136px;
+		}
+		&_c{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex: 0 1 147px;
+			.header__btm{
+				display: flex;
+
+			}
+		}
+		&_B{
+			flex: 0 1 147px;
+			.header__btm{
+				display: flex;
+
+			}
+			.header__language{
+				display: none;
+
+			}
+			.header__icon{
+				display: none;
+			}
+		}
 	}
 
 	&__icon {
-
+		opacity: 0;
+		visibility: hidden;
 		&_burger{
 			margin: 0 28px 0 0;
 		}
@@ -136,6 +187,7 @@ body.lock{
 		line-height: 12px;
 		&_burger{
 			position: relative;
+			transition: all 0.5s ease 0s;
 			&::after{
 				content: '';
 				width: 8px;
@@ -145,6 +197,12 @@ body.lock{
 				position: absolute;
 				top: 1px;
 				right: -14px;
+			}
+			opacity: 0;
+			visibility: hidden;
+			&.active{
+				opacity: 1;
+				visibility: visible;
 			}
 		}
 	}
@@ -161,20 +219,25 @@ body.lock{
 	&__menu {
 		display: none;
 		position: fixed;
-		z-index: 2;
-		right: -100%;
+		z-index: 4;
 		top: 0;
+		right: -100%;
 		width: 50%;
 		height: 100%;
 		padding: 0 0 0 117px;
-		background: rgba(0, 0, 0, 0.8);
+		background: rgba(0, 0, 0, 0.9);
 		border: 1px solid #FFFFFF;
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
-		transition-duration: 1s;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 2s ease 0s;
 		&.active{
+
 			right: 0;
+			opacity: 1;
+			visibility: visible;
 		}
 	}
 
@@ -191,13 +254,38 @@ body.lock{
 			font-weight: 500;
 			font-size: 24px;
 			margin: 0 0 23px 0;
-			
 			height: 35px;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.5s ease 0s;
+			cursor: pointer;
+			&.active{
+				opacity: 1;
+				visibility: visible;
+
+			}
 			span{
+				position: relative;
+				display: inline-block;
+				&::after{
+					content: '';
+					height:2px ;
+					opacity: 0;
+					width: 0;
+					visibility: hidden;
+					background: #ffffff;
+					position: absolute;
+					transition: all 0.5s ease 0s;
+					bottom: -8px;
+					left: 0;
+					display: block;
+				}
 				&:hover{
-					border-bottom: 2px solid #ffffff;
-					display: inline-block;
-					height: 35px;
+					&::after{
+					opacity: 1;
+					visibility: visible;
+					width: 100%;
+					}
 				}
 			}
 		}
@@ -215,6 +303,7 @@ body.lock{
 		opacity: 1;
 	}
 }
+
 
 .main {
 min-height: 100vh;
@@ -376,13 +465,14 @@ hr{
 }
 
 .system {
-height: 620px;
-padding: 50px 0 0 0;
-
+min-height: 100vh;
+display: flex;
+align-items: center;
 	&__container {
 		max-width: 835px;
 		margin: 0 auto;
 		padding: 0 15px;
+		transform: translate(0,-85px);
 	}
 
 	&__title {
@@ -396,7 +486,10 @@ padding: 50px 0 0 0;
 	&__row {
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 58px;
+		margin-bottom: 42px;
+		&_m{
+			margin-bottom: 83px;
+		}
 		&:last-child{
 			margin-bottom: 99px;
 		}
@@ -404,20 +497,10 @@ padding: 50px 0 0 0;
 
 	&__column {
 		position: relative;
-		&_1 {
-			flex: 0 1 149px;
-		}
-
-		&_2 {
-			flex: 0 1 114px;
-		}
-
-		&_3 {
-			flex: 0 1 186px;
-		}
-
-		&_4 {
-			flex: 0 1 102px;
+		flex: 0 1 25%;
+		margin: 0 75px 0 0;
+		&:last-child{
+			margin: 0;
 		}
 	}
 	&__icon{
@@ -490,13 +573,14 @@ padding: 50px 0 0 0;
 
 }
 .about {
-height: 635px;
-padding: 62px 0 0 0;
+min-height: 100vh;
+display: flex;
+align-items: center;
 	&__container {
 		max-width: 855px;
 		margin: 0 auto;
 		padding: 0 15px;
-		transform: translate(-50px,0);
+		transform: translate(-50px,-85px);
 	}
 
 	&__row {
@@ -558,13 +642,14 @@ padding: 62px 0 0 0;
 }
 
 .chat {
-padding: 82px 0 0 0;
-height: 635px;
+min-height: 100vh;
+display: flex;
+align-items: center;
 	&__container {
 		max-width: 839px;
 		margin: 0 auto;
 		padding: 0 15px;
-		transform: translate(-40px,0);
+		transform: translate(-40px,-85px);
 	}
 
 	&__row {
@@ -916,6 +1001,283 @@ padding: 119px 0 0 0;
 	font-weight: 600;
 	font-size: 14px;
 }
+
+
+.news {
+padding: 119px 0 0 0;
+
+	&__container {
+		max-width: 847px;
+		margin: 0 auto;
+		padding: 0 15px;
+
+	}
+
+	&__title {
+		font-weight: 600;
+		font-size: 32px;
+		line-height: 113.84%;
+		text-align: center;
+		margin-bottom: 90px;
+	}
+
+	&__banner {
+	}
+	&__list {
+	}
+}
+.banner-news {
+height: 349px;
+margin-bottom: 66px;
+border-top:1px solid #777777 ;
+position: relative;
+z-index: 1;
+	&__frame {
+		position: absolute;
+		z-index: 0;
+		left: 0;
+		top: 0;
+		height: 349px;
+		width:49.6%;
+		img{
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&__row {
+		display: flex;
+		max-width: 822px;
+		margin: 0 auto;
+		padding: 0 15px;
+		justify-content: space-between;
+		transform: translate(25px,0);
+
+	}
+
+	&__item {
+		position: relative;
+		z-index: 1;
+		flex: 0 1 430px;
+		padding: 52px 0 0 0;
+	}
+
+	&__date {
+		margin-bottom: 29px;
+	}
+
+	&__title {
+		margin-bottom: 29px;
+	}
+
+	&__info {
+		margin-bottom: 30px;
+	}
+
+	&__btm {
+		background: #D8014E;
+		border: none;
+	}
+
+	&__img {
+		padding: 18px 0 0 0;
+		transform: translate(0,1px);
+	}
+	hr{
+		position: relative;
+		z-index: 1;
+		height: 1px;
+
+	}
+	.news-btm {
+		border: none;
+		&::after{
+		background: url(../img/Vector55.svg) no-repeat;
+		}
+	}
+}
+.date {
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 113.84%;
+	color: #999999;
+	position: relative;
+	padding: 0 0 0 60px;
+	&::before{
+		content: '';
+		width: 45px;
+		height: 1.5px;
+		background: #ffffff;
+		position: absolute;
+		left: 0;
+		top: 5px;
+	}
+
+}
+.news-title {
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 113.84%;
+	color: #ffffff;
+}
+.news-info {
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 113.84%;
+	color: #999999;
+	text-transform: uppercase;
+}
+.news-btm {
+	border: 1px solid #FFFFFF;
+	width: 152px;
+	height: 33px;
+	font-weight: 500;
+	font-size: 14px;
+	color: #FFFFFF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	span{
+		margin: 0 7px 0 0;
+	}
+	&::after{
+		content: '';
+		width: 20px;
+		height: 9px;
+		background: url(../img/Vector59.svg) no-repeat;
+		display: inline-block;
+		transform: translate(0,1px);
+	}
+}
+.news-text{
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+}
+
+
+
+.list-news {
+	margin-bottom: 48px;
+	display: block;
+
+	&__item{
+		padding: 0 0 0 31px;
+	}
+	&__date {
+		margin-bottom: 16px;
+
+	}
+
+	&__title {
+		max-width: 593px;
+		margin-bottom: 13px;
+
+	}
+
+	&__info {
+		margin-bottom: 36px;
+		&_b{
+			margin-bottom: 51px;
+		}
+	}
+	&__img{
+		margin-bottom: 41px;
+	}
+	&__text{
+		margin-bottom: 26px;
+	}
+	&__btm{
+		margin-bottom: 68px;
+	}
+}
+
+
+.news {
+
+	&__row {
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid #666666;;
+		margin-bottom: 46px;
+	}
+
+	&__column {
+	}
+}
+.column-news {
+flex: 0 1 371px;
+padding: 0 4px 0 31px;
+margin-bottom: 69px;
+
+	&__date {
+		margin-bottom: 16px;
+	}
+
+	&__title {
+		margin-bottom: 26px;
+	}
+
+	&__info {
+		margin-bottom: 32px;
+	}
+
+	&__text {
+		margin-bottom: 44px;
+	}
+
+	&__btm {
+
+	}
+}
+
+.pagination {
+	padding: 0 0 146px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&__dots{
+		color: #666666;
+		font-weight: 600;
+		font-size: 16px;
+		margin: 0 20px 0 0;
+		}
+	&__item {
+		flex: 0 1 386px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__arrow-left {
+	}
+
+	&__list {
+	}
+
+	&__link {
+		font-weight: 600;
+		font-size: 16px;
+		color: #ffffff;
+		display: inline-block;
+		margin: 0 20px 0 0;
+		&.active{
+			padding: 5px 7px 7px 7px;
+			border: 1px solid #FFFFFF;
+			margin: 0 13px 0 -7px;
+		}
+		&:last-child{
+			margin: 0;
+		}
+	}
+
+	&__arrow-right {
+	}
+}
+.active {
+}
+
+
 
 
 
